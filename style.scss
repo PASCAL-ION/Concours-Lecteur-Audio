@@ -1,0 +1,364 @@
+@import "./mixins/mixins.scss";
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Ubuntu&display=swap');
+
+//mixins
+@mixin buttonsStyle {
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    font-size: 30px;
+    color: rgba(233, 233, 233, 0.488);
+    &:hover{
+        color: rgb(255, 255, 255);
+    }
+}
+
+//variables
+$anim: cubic-bezier(0.4, 0, 0.58, 1);
+$faceBorder: 1mm ridge rgba(0, 0, 0, 0.43);
+$faceBackground: rgba(245, 245, 220, 0.763);
+$blurNone: blur(0); 
+
+//default styles
+*,::after,::before{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+//---------------------------------CODE------------------------------------
+
+body{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background: #e0e0e0;
+}
+
+.page_background{
+    position: absolute;
+    filter: blur(5px);
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.cardContainer{
+
+    width: 400px;
+    height: 500px;
+    perspective: 1000px;
+    margin: 200px 0;
+
+    &__card{
+        transform-style: preserve-3d;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform: rotateY(15deg);
+        
+        @include facesAnimation;
+        
+
+        &__face{
+            position: absolute;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.484);
+            backdrop-filter: blur(.5px);
+            background: rgba(0, 0, 0, 0.414);
+
+            &__top {
+                transform: rotateX(90deg) translateY(0px) translateZ(60px);
+                width: 100%;
+                height: 120px;
+            }
+            &__bottom {
+                transform: rotateX(-90deg) translateZ(440px);
+                width: 100%;
+                height: 120px;
+            }   
+            &__right {
+                transform: rotateY(90deg) translateZ(340px);
+                width: 120px;
+            }
+            &__left {
+                transform: rotateY(-90deg) translateZ(60px);
+                width: 120px;
+            }    
+            &__back {
+                transform: rotateX(0deg) translateZ(-60px);
+                width: 100%;
+            }
+            
+            &__front {
+                transform: rotateX(0deg) translateZ(60px);
+                width: 100%;
+                filter: blur(0);
+                &__audioPlayer{
+                    z-index: 1;
+                    display: flex;
+                    height: 100%;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    position: relative;
+
+                    .timeline_soundbtn_container{
+                        width: 80%;
+                        margin: 0 auto;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .soundBtn{
+                            @include buttonsStyle;
+                            background: #00000000;
+                            font-size: 22px;
+                        }
+                        .timeline{
+                            width: calc(100% - 30%);
+                            margin: 0 auto;
+                            appearance: none;
+                            border-radius: 5px;
+                            background-color: #ffffff47;
+                            background-size: 0% 100%; //on fera évoluer la width en js pour monter la progression de la musique
+                            background-image: linear-gradient(#ffffff, #ffffff);
+                            background-repeat: no-repeat;
+                        }
+                        .timeline::-webkit-slider-thumb {
+                            -webkit-appearance: none;
+                            width: 15px;
+                            height: 15px;
+                            border-radius: 50%;
+                            cursor: pointer;
+                            opacity: 0;
+                            background-color: #252525;
+                          }
+                          
+                          .timeline::-webkit-slider-thumb:hover {
+                            background-color: #5b5b5b;
+                          }
+                          
+                          .timeline:hover::-webkit-slider-thumb {
+                            opacity: 1;
+                          }
+                          .timeline::-webkit-slider-runnable-track {
+                            -webkit-appearance: none;
+                            box-shadow: none;
+                            border: none;
+                            background: transparent;
+                          }
+                    }
+
+                    
+                
+                    .buttons{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 0 auto;
+                        width: calc(100% - 30%);
+                        margin-bottom: 30px;
+                
+                        &__play {
+                            @include buttonsStyle;
+                        }
+    
+                        &__forward{
+                            @include buttonsStyle;
+                        }
+                        &__backward{
+                            @include buttonsStyle;
+                        }
+                    }
+                    .infos{
+                        display: flex;
+                        align-items: center;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        height: 70%;
+                        width: 80%;
+                        margin: 0 auto;
+
+                        &__albumCover{
+                            margin-top: 30px;
+                            margin-bottom: 20px;
+                            border-radius: 5px;
+                            height: 250px;
+                        }
+
+                        &__songName{
+                            font-size: 20px;
+                            color: white;
+                            font-family: 'Ubuntu', sans-serif;
+
+                        }
+                        &__songNameAndHeartContainer{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            &__span{
+                                margin-left: 15px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                &__heartIcon{
+                                    color: white;
+                                    font-size: 20px;
+
+                                    &:hover{
+                                        cursor: pointer;
+                                        animation-name: fillHeart;
+                                        animation-duration: 0.40s;
+                                        animation-timing-function: ease-in;
+                                        animation-fill-mode: forwards;
+                                    }
+                                }
+                            }
+                        }
+                        &__artist{
+                            font-size: 14px;
+                            color: white;
+                            font-family: 'Nunito Sans', sans-serif;
+                        }
+                
+                        #audio{
+                            width: 100%;
+                            margin-bottom: 10px;
+                            border: none;
+                        }
+                    }      
+                }
+            }
+        }
+    }
+}
+
+
+
+
+//Animations :
+
+@keyframes fillHeart {
+    0% {
+        background: 20% linear-gradient(white 100%, red);
+        background-position: 0% 80%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    10% {
+        background: 20% linear-gradient(white 90%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    20% {
+        background: 20% linear-gradient(white 80%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    30% {
+        background: 20% linear-gradient(white 70%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    40% {
+        background: 20% linear-gradient(white 60%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    50% {
+        background: 20% linear-gradient(white 50%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    60% {
+        background: 20% linear-gradient(white 40%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    70% {
+        background: 20% linear-gradient(white 30%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    80% {
+        background: 20% linear-gradient(white 20%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    90% {
+        background: 20% linear-gradient(white 10%, red);
+        background-position: 0% 40%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+
+    100% {
+        background: 20% linear-gradient(rgb(255, 50, 43), red);
+        background-position: 0% 0%;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+    }
+}
+
+@keyframes pageBgDisparition {
+    0%{
+        background-attachment: fixed;
+        width: 100%;
+        height: 100%;
+    }
+    100%{
+        width: 0%;
+        height: 100%;
+        background-attachment: fixed;
+    }
+}

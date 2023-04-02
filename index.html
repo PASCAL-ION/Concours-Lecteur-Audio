@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Player Audio</title>
+</head>
+<body>
+    <div class="page_background"></div>
+    <div class="cardContainer">
+        <div class="cardContainer__card">
+            <div class="cardContainer__card__face cardContainer__card__face__front">
+                <div class="cardContainer__card__face__front__audioPlayer">
+                    <div class="infos">
+                        <img class="infos__albumCover"></img>
+                        <div class="infos__songNameAndHeartContainer">
+                            <p class="infos__songName"></p>
+                            <span class="infos__songNameAndHeartContainer__span"><i class="infos__songNameAndHeartContainer__span__heartIcon fa-regular fa-heart"></i></span>
+                        </div>
+                        <p class="infos__artist"></p>
+                        <audio id="audio"></audio>
+                    </div>
+                    <div class="timeline_soundbtn_container">
+                        <input type="range" class="timeline" max="100" value="0">
+                        <button class="soundBtn"></button>
+                    </div>
+                    <div class="buttons">
+                        <div class="buttons__backward"><i class="fa-solid fa-backward-step"></i></div>
+                        <div class="buttons__play"></div>
+                        <div class="buttons__forward"><i class="fa-solid fa-forward-step"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cardContainer__card__face cardContainer__card__face__right"></div>
+            <div class="cardContainer__card__face cardContainer__card__face__back"></div>
+            <div class="cardContainer__card__face cardContainer__card__face__left"></div>
+            <div class="cardContainer__card__face cardContainer__card__face__top"></div>
+            <div class="cardContainer__card__face cardContainer__card__face__bottom"></div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

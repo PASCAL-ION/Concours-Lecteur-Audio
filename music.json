@@ -1,0 +1,21 @@
+[
+    {
+        "title": "Tropical Getaway",
+        "artist": "TimTaj",
+        "cover": "https://freemusicarchive.org/image/?file=track_image%2FI11MxZ8UF4i2IGiz2QMDpQzZ6VSdv9cJJFJeHM4A.jpg&width=290&height=290&type=track",
+        "audio": "./music/Tropical Getaway.mp3"
+    },
+    {
+        "title": "Sunset",
+        "artist": "Polkavant",
+        "cover": "https://freemusicarchive.org/image/?file=track_image%2Fstv3vAS8Pr9J2mzWNHqTeLJD677Qy6WJTTKlaGYa.jpg&width=290&height=290&type=track",
+        "audio": "./music/Polkavant - Sunset.mp3"
+    },
+    {
+        "title": "Constance chill",
+        "artist": "Mr Smith",
+        "cover": "https://freemusicarchive.org/image/?file=album_image%2FZjmln7vMynNlXCezIPDk44gSrFMwtelZAIW2MNHi.jpg&width=290&height=290&type=album",
+        "audio": "./music/Constance Chill.mp3"
+    }
+]
+    

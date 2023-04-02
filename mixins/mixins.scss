@@ -1,0 +1,174 @@
+@mixin animationParams{
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@mixin facesAnimation{
+    &:hover{
+        .cardContainer__card__face__top{
+            animation-name: breakUpCard_top;
+            @include animationParams;
+        }
+        .cardContainer__card__face__left{
+            animation-name: breakUpCard_left;
+            @include animationParams;
+        }
+        .cardContainer__card__face__right{
+            animation-name: breakUpCard_right;
+            @include animationParams;
+        }
+        .cardContainer__card__face__bottom{
+            animation-name: breakUpCard_bottom;
+            @include animationParams;
+        }
+        .cardContainer__card__face__front{
+            animation-name: breakUpCard_front;
+            @include animationParams;
+        }
+        .cardContainer__card__face__back{
+            animation-name: breakUpCard_back;
+            @include animationParams;
+        }
+    }
+
+    &:not(:hover){
+        .cardContainer__card__face__top{
+            animation-name: returnToOrigin_top;
+            @include animationParams;
+        }
+        .cardContainer__card__face__left{
+            animation-name: returnToOrigin_left;
+            @include animationParams;
+        }
+        .cardContainer__card__face__right{
+            animation-name: returnToOrigin_right;
+            @include animationParams;
+        }
+        .cardContainer__card__face__bottom{
+            animation-name: returnToOrigin_bottom;
+            @include animationParams;
+        }
+        .cardContainer__card__face__front{
+            animation-name: returnToOrigin_front;
+            @include animationParams;
+        }
+        .cardContainer__card__face__back{
+            animation-name: returnToOrigin_back;
+            @include animationParams;
+        }
+    }
+}
+//Top face animation
+@keyframes breakUpCard_top {
+
+    from{
+        transform: rotateX(90deg) translateY(0px) translateZ(60px);
+    }
+    to{
+        transform: rotateX(90deg) rotateZ(10deg) translateY(200px) translateZ(60px);
+    }
+}
+@keyframes returnToOrigin_top {
+    from{
+        transform: rotateX(90deg) rotateZ(10deg) translateY(200px) translateZ(60px);
+    }
+    to{
+        transform: rotateX(90deg) translateY(0px) translateZ(60px);
+    }
+}
+//Top face animation end
+
+//Left face animation
+@keyframes breakUpCard_left {
+    from{
+        transform: rotateY(-90deg) translateZ(60px);
+    }
+    to{
+        transform: rotateY(-100deg) translateZ(150px);
+    }
+}
+@keyframes returnToOrigin_left {
+    from{
+        transform: rotateY(-100deg) translateZ(150px);
+    }
+    to{
+        transform: rotateY(-90deg) translateZ(60px);
+    }
+}
+//Left face animation end
+
+//Right face animation
+@keyframes breakUpCard_right {
+    from{
+        transform: rotateY(90deg) translateZ(340px);
+    }
+    to{
+        transform: rotateY(120deg) translateX(-300px) translateZ(300px);
+    }
+}
+@keyframes returnToOrigin_right {
+    from{
+        transform: rotateY(120deg) translateX(-300px) translateZ(300px);
+    }
+    to{
+        transform: rotateY(90deg) translateZ(340px);
+    }
+}
+//Right face animation end
+
+//Bottom face animation
+@keyframes breakUpCard_bottom {
+    from{
+        transform: rotateX(-90deg) translateZ(440px);
+    }
+    to{
+        transform: rotateX(-90deg) rotateY(10deg) translateX(-50px) translateZ(480px);
+    }
+}
+@keyframes returnToOrigin_bottom {
+    from{
+        transform: rotateX(-90deg) rotateY(10deg) translateX(-50px) translateZ(480px);
+    }
+    to{
+        transform: rotateX(-90deg) translateZ(440px);
+    }
+}
+//Bottom face animation end
+
+//Front face animation
+@keyframes breakUpCard_front {
+    from{
+        transform: rotateX(0deg) translateZ(60px);
+    }
+    to{
+        transform: translateZ(120px);
+    }
+}
+@keyframes returnToOrigin_front {
+    from{
+        transform: translateZ(120px);
+    }
+    to{
+        transform: rotateX(0deg) translateZ(60px);
+    }
+}
+//Front face animation
+
+//Back face animation
+@keyframes breakUpCard_back {
+    from{
+        transform: rotateX(0deg) translateZ(-60px);
+    }
+    to{
+        transform: rotateX(10deg) rotateZ(30deg) translateY(-50px) translateZ(-200px);
+    }
+}
+@keyframes returnToOrigin_back {
+    from{
+        transform: rotateX(10deg) rotateZ(30deg) translateZ(-50px) ;
+    }
+    to{
+        transform: rotateX(0deg) translateZ(-60px);
+    }
+}
+//Back face animation end
